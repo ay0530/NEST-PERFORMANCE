@@ -1,0 +1,40 @@
+
+###
+# 팀 등록
+POST {{domain}}/team
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+Authorization: Bearer {{token}}
+
+
+--WebAppBoundary
+Content-Disposition: form-data; name="file"; filename="sample.csv"
+Content-Type: text/csv
+
+< /sample.csv
+--WebAppBoundary--
+
+###
+# 팀 업데이트
+PUT  {{domain}}/team/1
+Content-Type: application/JSON
+Authorization: Bearer {{token}}
+
+{
+    "name" : "두번째 팀",
+    "description": "팀 과제 하고싶다!!!"
+}
+
+###
+# 팀 삭제
+DELETE {{domain}}/team/2
+Authorization: Bearer {{token}}
+
+### 
+# 팀 전체 조회
+GET {{domain}}/team
+Authorization: Bearer {{token}}
+
+###
+# 팀 상세 조회
+GET {{domain}}/team/1
+Authorization: Bearer {{token}}

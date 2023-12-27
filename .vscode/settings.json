@@ -1,0 +1,9 @@
+// ctrl+alt+E (윈도우) 또는 Cmd + Alt + e (Mac) 눌러서 localhost로 변경 필수
+{
+  "rest-client.environmentVariables": {
+    "localhost": {
+      "domain": "http://localhost:3000",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAdGVzdC5jb20iLCJzdWIiOjEsImlhdCI6MTcwMzI1MjM1OX0.3mPVLKkheyQnB90RVdljZgGv99T8TlqTqzu-q5W8cK0"
+    }
+  }
+}

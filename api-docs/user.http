@@ -1,0 +1,27 @@
+# @token={{login.response.body.$.access_token}} body 값 주워오기!!! (feat.윤호천재님)
+
+########## user
+# @name login
+POST {{domain}}/user/login
+Content-Type: application/JSON
+
+{
+    "email" : "test@test.com",
+    "password": "1234"
+}
+
+###
+# 회원가입
+POST  {{domain}}/user/register
+Content-Type: application/JSON
+
+{
+    "email" : "test@test.com",
+    "password": "1234"
+}
+
+###
+# 이메일 조회
+
+GET {{domain}}/user/email
+Authorization: Bearer {{token}}

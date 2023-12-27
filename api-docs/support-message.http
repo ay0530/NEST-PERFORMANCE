@@ -1,0 +1,36 @@
+
+###
+# 응원 메시지 등록
+POST {{domain}}/support-message/1
+Content-Type: application/JSON
+Authorization: Bearer {{token}}
+
+{
+    "message" : "화이팅!!"
+}
+
+###
+# 응원 메시지 업데이트
+PUT  {{domain}}/support-message/2
+Content-Type: application/JSON
+Authorization: Bearer {{token}}
+
+{
+    "name" : "두번째 응원 메시지",
+    "description": "응원 메시지 과제 하고싶다!!"
+}
+
+###
+# 응원 메시지 삭제
+DELETE {{domain}}/support-message/2
+Authorization: Bearer {{token}}
+
+### 
+# 응원 메시지 전체 조회
+GET {{domain}}/support-message
+Authorization: Bearer {{token}}
+
+###
+# 응원 메시지 상세 조회
+GET {{domain}}/support-message/1
+Authorization: Bearer {{token}}
