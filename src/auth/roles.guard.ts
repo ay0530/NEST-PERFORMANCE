@@ -22,8 +22,8 @@ export class RolesGuard extends AuthGuard('jwt') implements CanActivate {
     // getAllAndOverride : reflector를 통해 메타데이터 키('roles')에 대한 값을 조회 후 반환
     const requiredRoles = this.reflector.getAllAndOverride<Role[]>('roles', [
       // <>타입의 인스턴스를 반환하기.. (제너릭 안에는 아무거나 넣을 수 있음..)
-      context.getHandler(), // 현재 실행 중인 컨트롤러의 메서드에 대한 정보를 반환(e.g. @get 라우터를 실행중일 경우 @get 라우터의 "fineOne"라는 함수 반환!)
-      context.getClass(), // 현재 실행 중인 핸들러를 포함하는 컨트롤러 클래스에 대한 정보를 반환
+      context.getHandler(), // 현재 실행 중인 컨트롤러의 메서드에 대한 정보를 반환(e.g. @get 라우터를 실행중일 경우 @get 라우터의 "fineOne" 반환!)
+      context.getClass(), // 현재 실행 중인 핸들러를 포함하는 컨트롤러 클래스에 대한 정보를 반환(e.g. @get 라우터가 UserController 클래스 안에 있으면 "UserController" 반환!!)
     ]);
     if (!requiredRoles) {
       return true;
