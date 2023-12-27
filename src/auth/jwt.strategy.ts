@@ -14,12 +14,14 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     private readonly configService: ConfigService,
   ) {
     super({
+      // ExtractJwt.fromAuthHeaderAsBearerToken() : HTTP 요청의 Authorization 헤더에서 Bearer 토큰 추출
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-      ignoreExpiration: false,
-      secretOrKey: configService.get('JWT_SECRET_KEY'),
+      ignoreExpiration: false, // 토큰의 만료 여부 검사
+      secretOrKey: configService.get('JWT_SECRET_KEY'), // JWT 암호 키 조회
     });
   }
 
+  // 회원 이메일 조회
   async validate(payload: any) {
     const user = await this.userService.findByEmail(payload.email);
     if (_.isNil(user)) {
