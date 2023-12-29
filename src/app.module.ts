@@ -8,13 +8,12 @@ import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm'; // typeor
 import { AuthModule } from './auth/auth.module';
 // import { SupportMessage } from './support-message/entities/support-message.entity'; // support-message 엔티티 사용
 // import { SupportMessageModule } from './support-message/support-message.module'; // support-message 모듈 사용
-// import { Team } from './team/entities/team.entity'; // team 엔티티 사용
-// import { TeamModule } from './team/team.module'; // team 모듈 사용
+import { Performance } from './performance/entities/performance.entity'; // performance 엔티티 사용
+import { PerformanceModule } from './performance/Performance.module'; // performance 모듈 사용
 import { User } from './user/entities/user.entity'; // user 엔티티 사용
 import { UserModule } from './user/user.module'; // user 모듈 사용
 import { PerformanceController } from './performance/performance.controller';
 import { PerformanceService } from './performance/performance.service';
-import { PerformanceModule } from './performance/performance.module';
 
 const typeOrmModuleOptions = {
   useFactory: async (
