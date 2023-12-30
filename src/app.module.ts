@@ -12,8 +12,6 @@ import { Performance } from './performance/entities/performance.entity'; // perf
 import { PerformanceModule } from './performance/Performance.module'; // performance 모듈 사용
 import { User } from './user/entities/user.entity'; // user 엔티티 사용
 import { UserModule } from './user/user.module'; // user 모듈 사용
-import { PerformanceController } from './performance/performance.controller';
-import { PerformanceService } from './performance/performance.service';
 
 const typeOrmModuleOptions = {
   useFactory: async (
@@ -57,13 +55,12 @@ const typeOrmModuleOptions = {
     TypeOrmModule.forRootAsync(typeOrmModuleOptions),
     AuthModule,
     UserModule,
-    // TeamModule,
-    // SupportMessageModule,
     PerformanceModule,
+    // SupportMessageModule,
   ],
   // controllers: HTTP 통신 역할
-  controllers: [PerformanceController],
+  controllers: [],
   // providers : 모듈 전체에서 사용할 서비스나 프로바이더 정의(서비스, DB모델, 헬퍼, 팩토리 등)
-  providers: [PerformanceService],
+  providers: [],
 })
 export class AppModule {}
