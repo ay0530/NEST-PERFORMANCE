@@ -20,13 +20,13 @@ export class PerformanceController {
   // READ : 공연 전체 정보 조회
   @Get()
   async findAll() {
-    // return await this.performanceService.findAll();
+    return await this.performanceService.findAll();
   }
 
   // READ : 공연 상세 조회
   @Get(':id')
   async findOne(@Param('id') id: number) {
-    //   return await this.performanceService.findOne(id);
+    return await this.performanceService.findOne(id);
   }
 
   // CREATE : 공연 정보 저장

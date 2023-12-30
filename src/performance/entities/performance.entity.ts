@@ -13,10 +13,10 @@ export class Performance {
   @PrimaryGeneratedColumn() // 기본키 설정
   id: number;
 
-  @Column({ type: 'varchar', unique: true, nullable: false })
+  @Column({ type: 'varchar', nullable: false })
   prfrm_id: string;
 
-  @Column({ type: 'varchar', unique: true, nullable: false })
+  @Column({ type: 'varchar', nullable: false })
   name: string;
 
   @Column({ type: 'varchar', select: false })
