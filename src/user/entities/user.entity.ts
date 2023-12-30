@@ -1,4 +1,4 @@
-// import { SupportMessage } from 'src/support-message/entities/support-message.entity'; // support-message 엔티티 사용
+// import { Performance } from 'src/performance/entities/performance.entity'; // performance 엔티티 사용
 import {
   Column,
   Entity,
@@ -23,11 +23,11 @@ export class User {
   @Column({ type: 'varchar', select: false, nullable: false })
   password: string;
 
-  @Column({ type: 'enum', enum: Role, default: Role.User }) // role 필드는 enum에서 설정한 값만 가질 수 있음
-  role: Role;
+  @Column({ type: 'varchar', unique: true, nullable: false })
+  name: string;
 
   // 일대다 관계 설정
-  // (supportMessage) => supportMessage.user : supportMessage 엔티티 내의 'user' 필드를 참고
-  // @OneToMany(() => SupportMessage, (supportMessage) => supportMessage.user)
-  // supportMessages: SupportMessage[];
+  // (performance) => performance.user : performance 엔티티 내의 'user' 필드를 참고
+  // @OneToMany(() => Performance, (performance) => performance.user)
+  // performances: Performance[];
 }
