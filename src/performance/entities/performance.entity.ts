@@ -14,7 +14,7 @@ export class Performance {
   id: number;
 
   @Column({ type: 'varchar', unique: true, nullable: false })
-  performance_id: string;
+  prfrm_id: string;
 
   @Column({ type: 'varchar', unique: true, nullable: false })
   name: string;
