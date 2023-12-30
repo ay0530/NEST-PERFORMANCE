@@ -6,13 +6,15 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
-@Index('name', ['name'], { unique: true }) // index를 설정함으로써 검색 효율이 향상됨
 @Entity({
   name: 'PREFORMANCE', // 테이블 명
 })
 export class Performance {
   @PrimaryGeneratedColumn() // 기본키 설정
   id: number;
+
+  @Column({ type: 'varchar', unique: true, nullable: false })
+  performance_id: string;
 
   @Column({ type: 'varchar', unique: true, nullable: false })
   name: string;
@@ -30,7 +32,7 @@ export class Performance {
   theater: string;
 
   @Column({ type: 'varchar', select: true })
-  postrer: string;
+  poster: string;
 
   @Column({ type: 'date', select: true, nullable: false })
   start_date: Date;
