@@ -11,7 +11,6 @@ import {
 
 import { PerformanceDto } from './dto/performance.dto'; // update-team dto 사용
 import { PerformanceService } from './performance.service'; // team 서비스 사용
-import { Performance } from './entities/performance.entity'; // user 엔티티 사용
 
 @Controller('performance')
 export class PerformanceController {
@@ -21,6 +20,12 @@ export class PerformanceController {
   @Get()
   async findAll() {
     return await this.performanceService.findAll();
+  }
+
+  // READ : 공연 전체 정보 검색
+  @Get('search/:value')
+  async search(@Param('value') value: any) {
+    return await this.performanceService.search(value);
   }
 
   // READ : 공연 상세 조회

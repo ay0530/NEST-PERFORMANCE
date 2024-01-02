@@ -2,7 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
 import * as xml2js from 'xml2js';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { ILike, Like, Repository } from 'typeorm';
 import { Performance } from './entities/performance.entity';
 import _ from 'lodash';
 
@@ -90,6 +90,14 @@ export class PerformanceService {
   // 공연 전체 정보 조회
   async findAll(): Promise<Performance[]> {
     return await this.performanceRepository.find({});
+  }
+
+  // 공연 전체 정보 검색
+  async search(value: any): Promise<Performance[]> {
+    // 공연명, 극장명 검색
+    return await this.performanceRepository.find({
+      where: [{ name: ILike(`%${value}%`) }, { theater: ILike(`%${value}%`) }],
+    });
   }
 
   // 공연 상세 정보 조회
