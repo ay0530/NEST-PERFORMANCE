@@ -56,6 +56,11 @@ $ npm run test:e2e
 
 # test coverage
 $ npm run test:cov
+
+# REST CLIENT test
+$ ctrl+alt+E (윈도우) 또는 Cmd + Alt + e (Mac) 눌러서 localhost로 변경 필수
+$ user.http에서 로그인 1회 시도 후 토큰 복사해서 .vscode/settings.json 파일의 token 갱신한 후 다른 http 파일들 테스트 진행
+$ 공연 조회가 필요한 경우 performance.http 파일에서 공연 정보 저장 1회 진행 필수
 ```
 
 ## Support
