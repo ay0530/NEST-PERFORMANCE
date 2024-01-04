@@ -22,14 +22,24 @@ export class UserService {
   ) {} // 매개변수만 설정하고 본문은 비어있음!!
 
   // CREATE : 회원 정보 저장
-  async register(email: string, password: string) {
+  async register(email: string, password: string, name: string) {
     // 이메일 조회
-    const existingUser = await this.findByEmail(email);
+    const existingEmail = await this.findByEmail(email);
 
     // ERR : 이미 이메일이 존재할 경우
-    if (existingUser) {
+    if (existingEmail) {
       throw new ConflictException(
         '이미 해당 이메일로 가입된 사용자가 있습니다!',
+      );
+    }
+
+    // 이메일 조회
+    const existingName = await this.findByEmail(name);
+
+    // ERR : 이미 이메일이 존재할 경우
+    if (existingName) {
+      throw new ConflictException(
+        '이미 해당 이름으로 가입된 사용자가 있습니다!',
       );
     }
 
@@ -40,6 +50,7 @@ export class UserService {
     await this.userRepository.save({
       email,
       password: hashedPassword,
+      name,
     });
   }
 
@@ -70,6 +81,8 @@ export class UserService {
   // READ : 이메일 조회
   async findByEmail(email: string) {
     // 이메일 조회
-    return await this.userRepository.findOneBy({ email });
+    return await this.userRepository.findOne({
+      where: { email },
+    });
   }
 }

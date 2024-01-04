@@ -1,4 +1,3 @@
-// import { Performance } from 'src/performance/entities/performance.entity'; // performance 엔티티 사용
 import {
   Column,
   Entity,
@@ -7,7 +6,8 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
-import { Role } from '../types/userRole.type'; // userRole 타입(enum) 사용
+import { Point } from 'src/point/entites/point.entity'; // performance 엔티티 사용
+import { Reservation } from 'src/reservation/entities/reservation.entity';
 
 @Index('email', ['email'], { unique: true }) // index를 설정함으로써 검색 효율이 향상됨
 @Entity({
@@ -27,7 +27,12 @@ export class User {
   name: string;
 
   // 일대다 관계 설정
-  // (performance) => performance.user : performance 엔티티 내의 'user' 필드를 참고
-  // @OneToMany(() => Performance, (performance) => performance.user)
-  // performances: Performance[];
+  // (supportMessage) => supportMessage.user : supportMessage 엔티티 내의 'user' 필드를 참고
+  @OneToMany(() => Point, (point) => point.user)
+  point: Point[];
+
+  // 일대다 관계 설정
+  // (supportMessage) => supportMessage.user : supportMessage 엔티티 내의 'user' 필드를 참고
+  @OneToMany(() => Reservation, (reservation) => reservation.user)
+  reservation: Reservation[];
 }

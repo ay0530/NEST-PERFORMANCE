@@ -20,12 +20,12 @@ import { UserService } from './user.service'; // user 서비스 사용
       inject: [ConfigService], // useFactory에서 ConfigService를 사용할 수 있도록 의존성 주입
     }),
     TypeOrmModule.forFeature([User]), // User 엔티티를 현재 모듈에서 사용
-  ],
+  ], 
   // providers : 모듈 전체에서 사용할 서비스나 프로바이더 정의(서비스, DB모델, 헬퍼, 팩토리 등)
   providers: [UserService],
   // controllers: HTTP 통신 역할
   controllers: [UserController],
   // exports: 묘듈 내보내기
-  exports: [UserService],
+  exports: [UserService, TypeOrmModule.forFeature([User])],
 })
 export class UserModule {}
