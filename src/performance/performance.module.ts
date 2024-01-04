@@ -18,6 +18,6 @@ import { PerformanceService } from './performance.service'; // performance 서�
   // controllers: HTTP 통신 역할
   controllers: [PerformanceController],
   // exports: 묘듈 내보내기
-  exports: [PerformanceService],
+  exports: [PerformanceService, TypeOrmModule.forFeature([Performance])],
 })
 export class PerformanceModule {}
