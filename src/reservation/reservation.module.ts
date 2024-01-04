@@ -1,11 +1,14 @@
 import { Module } from '@nestjs/common'; // 유효성 검사 파이프
+import { ReservationController } from './reservation.controller';
+import { ReservationService } from './reservation.service';
+
 import { ConfigService } from '@nestjs/config'; // 환경 변수 및 구성 관리
 import { JwtModule } from '@nestjs/jwt'; // jwt 사용
 import { TypeOrmModule } from '@nestjs/typeorm'; // typeorm 연결
 
-import { User } from './entities/user.entity'; // user 엔티티 사용
-import { UserController } from './user.controller'; // user 컨트롤러 사용
-import { UserService } from './user.service'; // user 서비스 사용
+import { UserModule } from '../user/user.module'; // user 모듈 사용
+import { PerformanceModule } from '../performance/performance.module';
+import { Reservation } from './entities/reservation.entity'; // reservation 엔티티 사용
 
 // Module 데코레이터(imports, controllers, providers 제공)
 @Module({
@@ -19,13 +22,15 @@ import { UserService } from './user.service'; // user 서비스 사용
       }),
       inject: [ConfigService], // useFactory에서 ConfigService를 사용할 수 있도록 의존성 주입
     }),
-    TypeOrmModule.forFeature([User]), // User 엔티티를 현재 모듈에서 사용
-  ], 
+    UserModule,
+    PerformanceModule,
+    TypeOrmModule.forFeature([Reservation]), // Reservation 엔티티를 현재 모듈에서 사용
+  ],
   // providers : 모듈 전체에서 사용할 서비스나 프로바이더 정의(서비스, DB모델, 헬퍼, 팩토리 등)
-  providers: [UserService],
+  providers: [ReservationService],
   // controllers: HTTP 통신 역할
-  controllers: [UserController],
+  controllers: [ReservationController],
   // exports: 묘듈 내보내기
-  exports: [UserService, TypeOrmModule.forFeature([User])],
+  exports: [ReservationService],
 })
-export class UserModule {}
+export class ReservationModule {}

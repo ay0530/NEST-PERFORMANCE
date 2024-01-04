@@ -1,0 +1,15 @@
+###
+# 예약 정보 저장
+POST {{domain}}/reservation/3
+Content-Type: application/JSON
+Authorization: Bearer {{token}}
+
+###
+# 예약 정보 조회
+GET  {{domain}}/reservation/1
+Authorization: Bearer {{token}}
+
+###
+# 예약 정보 삭제
+DELETE {{domain}}/reservation/1
+Authorization: Bearer {{token}}

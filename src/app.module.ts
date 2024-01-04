@@ -6,15 +6,14 @@ import { ConfigModule, ConfigService } from '@nestjs/config'; // 환경 변수 �
 import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm'; // typeorm 연결
 
 import { AuthModule } from './auth/auth.module';
-// import { SupportMessage } from './support-message/entities/support-message.entity'; // support-message 엔티티 사용
-// import { SupportMessageModule } from './support-message/support-message.module'; // support-message 모듈 사용
-// import { Team } from './team/entities/team.entity'; // team 엔티티 사용
-// import { TeamModule } from './team/team.module'; // team 모듈 사용
+import { Performance } from './performance/entities/performance.entity'; // performance 엔티티 사용
+import { PerformanceModule } from './performance/performance.module'; // performance 모듈 사용
 import { User } from './user/entities/user.entity'; // user 엔티티 사용
 import { UserModule } from './user/user.module'; // user 모듈 사용
-import { PerformanceController } from './performance/performance.controller';
-import { PerformanceService } from './performance/performance.service';
-import { PerformanceModule } from './performance/performance.module';
+import { ReservationModule } from './reservation/reservation.module'; // reservation 모듈 사용
+import { Reservation } from './reservation/entities/reservation.entity'; // reservation 모듈 사용
+import { PointModule } from './point/point.module'; // point 모듈 사용
+import { Point } from './point/entites/point.entity'; // point 모듈 사용
 
 const typeOrmModuleOptions = {
   useFactory: async (
@@ -30,7 +29,7 @@ const typeOrmModuleOptions = {
     host: configService.get('DB_HOST'),
     port: configService.get('DB_PORT'),
     database: configService.get('DB_NAME'),
-    entities: [User, Performance], // 테이블 명
+    entities: [User, Performance, Reservation, Point], // 테이블 명
     synchronize: configService.get('DB_SYNC'), // DB 스키마 자동 동기화
     logging: true, // SQL 로그 출력 여부
   }),
@@ -58,13 +57,13 @@ const typeOrmModuleOptions = {
     TypeOrmModule.forRootAsync(typeOrmModuleOptions),
     AuthModule,
     UserModule,
-    // TeamModule,
-    // SupportMessageModule,
     PerformanceModule,
+    ReservationModule,
+    PointModule,
   ],
   // controllers: HTTP 통신 역할
-  controllers: [PerformanceController],
+  controllers: [],
   // providers : 모듈 전체에서 사용할 서비스나 프로바이더 정의(서비스, DB모델, 헬퍼, 팩토리 등)
-  providers: [PerformanceService],
+  providers: [],
 })
 export class AppModule {}

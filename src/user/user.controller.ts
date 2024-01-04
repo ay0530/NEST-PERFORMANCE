@@ -4,6 +4,7 @@ import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common'; // 유�
 import { AuthGuard } from '@nestjs/passport'; // 특정 경로 접근 제한 가드
 
 import { LoginDto } from './dto/login.dto'; // login dto 사용
+import { SignupDto } from './dto/signup.dto'; // signup dto 사용
 import { User } from './entities/user.entity'; // user 엔티티 사용
 import { UserService } from './user.service'; // user 서비스 사용
 
@@ -13,8 +14,12 @@ export class UserController {
 
   @Post('register')
   // `@Body() loginDto: LoginDto` : body 값을 loginDto로 매핑
-  async register(@Body() loginDto: LoginDto) {
-    return await this.userService.register(loginDto.email, loginDto.password);
+  async register(@Body() signupDto: SignupDto) {
+    return await this.userService.register(
+      signupDto.email,
+      signupDto.password,
+      signupDto.name,
+    );
   }
 
   @Post('login')
@@ -26,6 +31,6 @@ export class UserController {
   @UseGuards(AuthGuard('jwt')) // JWT 토큰이 유효한지 검사하는 가드
   @Get('email')
   getEmail(@UserInfo() user: User) {
-    return { email: user.email };
+    return user;
   }
 }
